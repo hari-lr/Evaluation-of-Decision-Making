@@ -1,0 +1,228 @@
+---
+title: "Inaction We Trust"
+author: "Adrien Fillon"
+date: "27/01/2021"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+
+list.of.packages <- c("report", "dplyr", "psych", "ggplot2", "tidyverse", "corrr", "corrplot", "PerformanceAnalytics", "Hmisc", "ggstatsplot", "jtools", "metan", "ggstatsplot", "ggthemes", "ggpubr", "apaTables","insight", "parameters")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[
+  ,"Package"])]
+if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
+invisible(lapply(list.of.packages, library, character.only = TRUE))
+
+# setting formatting options
+options(scipen=999, digits =3)
+
+
+```
+
+# Study 2
+
+```{r study 2, echo=FALSE}
+
+data2 <- read.csv("inactionwetrust_study2.csv",sep = ";" )
+# data cleaning
+# data2 <- data2[-c(1:2),]
+## remove variable descriptions + practice data
+data2 <-  data2 [, c("expect", "preference", "competence", "descriptive.norms", "Injunctive", "regret", "joy", "check", "gender", "age", "condition")]
+data2 <- mutate_all(data2, function(x) as.numeric(as.character(x)))
+
+# Manipulation check
+# check question about to what extent participants expect the advisors to change their behaviour (based on prior outcomes) : negative prior outcome > no prior outcome > positive prior outcome
+# 1 = absent/control, 2 = positive 3 = negative
+
+datasetexpect12 <-data2 %>% select (expect, condition) %>% filter (condition == 1 | condition == 2)
+check1<-t.test(datasetexpect12$expect~datasetexpect12$condition)
+check1
+
+datasetexpect13 <-data2 %>% select (expect, condition) %>% filter (condition == 1 | condition == 3)
+check3<-t.test(datasetexpect13$expect~datasetexpect13$condition)
+check3
+
+```
+
+As expected, positive prior outcome was found with lower change to advisors behavior than absent prior outcome, m1=`r check1$estimate[2]`, m2= `r check1$estimate[1]`, t(`r check1$parameter`)=`r check1$statistic`, p = `r check1$p.value`.
+Likewise, absent prior outcome was found with lower change to advisors behavior than negative prior outcome, m = `r check3$estimate[2]`, t(`r check3$parameter`)=`r check3$statistic`, p = `r check3$p.value`.
+The check is successful.
+
+```{r descriptives2}
+
+S2Control <- data2 %>% filter (condition == 1)
+
+summary2 <- S2Control %>%
+    select(preference, competence, descriptive.norms, Injunctive, regret, joy, age, gender) %>% 
+  psych::describe(quant=c(.25,.75)) %>% as_tibble(rownames="rowname")
+knitr::kable(summary2, digits=2, caption = "Summary descriptives", align = "c")
+tablegender2<-table(S2Control$gender)
+knitr::kable(tablegender2, digits=2, caption = "Summary gender", align = "c")
+
+dplot2 <- S2Control %>% 
+  select(preference, competence, descriptive.norms, Injunctive, regret, joy) %>%
+  rename(Preference = preference, Competence = competence,
+         "Descriptive norms" = descriptive.norms,
+         "Injunctive norms" = Injunctive, Regret = regret, Joy = joy)%>%
+  gather()
+dplot2$key<-factor(dplot2$key, levels = c("Preference","Competence",
+                                          "Descriptive norms", "Injunctive norms",
+                                          "Regret", "Joy"))
+
+dplot2 %>% ggplot(aes(value)) + 
+  facet_wrap(~ key, scales = "free")+ geom_bar(binwidth = 1)+theme_apa()+
+  labs(x = "", y = "")+ scale_x_discrete(limits = c(-5,0,5))+ ylim(0, 250) 
+
+
+S2preferenceplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = preference, # numeric variable
+  xlab = "Preference", # x-axis label
+  # title = "Preference", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2preferenceplot
+ggsave("Study2-preference.png", dpi = 600, scale = 1.7)
+
+S2competenceplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = competence, # numeric variable
+  xlab = "Competence", # x-axis label
+  # title = "Competence", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2competenceplot
+ggsave("Study2-competence.png", dpi = 600, scale = 1.7)
+
+
+S2desnormativeplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = descriptive.norms, # numeric variable
+  xlab = "Descriptive norms", # x-axis label
+  # title = "Norms", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2desnormativeplot
+ggsave("Study2-descriptive-norms.png", dpi = 600, scale = 1.7)
+
+S2injnormativeplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = Injunctive, # numeric variable
+  xlab = "Injunctive norms", # x-axis label
+  # title = "Norms", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2injnormativeplot
+ggsave("Study2-injunctive-norms.png", dpi = 600, scale = 1.7)
+
+S2regretplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = regret, # numeric variable
+  xlab = "Regret", # x-axis label
+  # title = "Preference", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2regretplot
+ggsave("Study2-regret.png", dpi = 600, scale = 1.7)
+
+S2joyplot <- ggstatsplot::gghistostats(
+  data = S2Control, # data from which variable is to be taken
+  x = joy, # numeric variable
+  xlab = "Joy", # x-axis label
+  # title = "Preference", # title for the plot
+  #ggtheme = ggthemes::theme_tufte(), # changing default theme
+  test.value = 0, # test value
+  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
+)
+S2joyplot
+ggsave("Study2-joy.png", dpi = 600, scale = 1.7)
+
+
+# six in one
+library(ggpubr)
+ggarrange(S2preferenceplot, S2competenceplot, S2desnormativeplot, S2injnormativeplot, S2regretplot, S2joyplot, ncol = 2, nrow	= 3, common.legend = TRUE)
+ggsave("Study2-control-6 in one.png", width = 12, height = 18, dpi = 600, scale = 1)
+
+
+preference2<-t.test(S2Control$preference, mu = 0)
+report(preference2)
+competence2 <- t.test(S2Control$competence, mu = 0)
+report(competence2)
+descriptive.norms2<-t.test(S2Control$descriptive.norms, mu = 0)
+report(descriptive.norms2)
+Injunctive2<-t.test(S2Control$Injunctive, mu = 0)
+report(Injunctive2)
+regret2<-t.test(S2Control$regret, mu = 0)
+report(regret2)
+joy2<-t.test(S2Control$joy, mu = 0)
+report(joy2)
+
+
+```
+
+### differences between conditions
+
+#1. In case of no prior outcomes or positive prior outcomes, the advisor that did not act will be preferred over the one who did act, assuming both action and inaction led to negative outcomes. Additionally, we predict that the advisor who did not act will be seen as more competent, and that his decision will be seen as more in line with social norms (injunctive and descriptive). 
+less than 0 : Paul = inaction
+more than 0 : George = action
+we want the t-test being significantly lower than 0
+
+Test for no prior outcomes or positive prior outcomes:
+
+2. In case of negative prior outcomes, the advisor who did act will be preferred over the one who did not act, assuming both action and inaction led to negative outcomes. Finally, we predict that the advisor who did act will be seen as more competent, and that his decision will be seen as more in line with social norms (injunctive and descriptive). 
+
+we want the t-test being significantly higher than 0
+
+Test for Negative prior outcomes:
+
+```{r negative condition}
+
+datasetexpect3 <-data2 %>% select (condition, preference, competence, Injunctive, descriptive.norms) %>% filter (condition ==3)
+
+preference3<-t.test(datasetexpect3$preference, mu = 0)
+report(preference3)
+competence3<-t.test(datasetexpect3$competence, mu = 0)
+report(competence3)
+Injunctive3<-t.test(datasetexpect3$Injunctive, mu = 0)
+report(Injunctive3)
+descriptive.norms3<-t.test(datasetexpect3$descriptive.norms, mu = 0)
+report(descriptive.norms3)
+ 
+
+
+```
+
+We will also look at the correlations between regret, joy, competence, normativeness, and hiring preferences and expect them to be related positively with each other generally.
+
+
+For study 2
+
+```{r correlation2}
+
+nopriorcorrdf<-data2%>%select (regret, joy, competence, Injunctive, descriptive.norms, preference, condition)%>%filter (condition == 1) %>% na.omit(nopriorcorrdf)%>%select(-condition)
+positivepriorcorrdf<-data2%>%select (regret, joy, competence, Injunctive, descriptive.norms, preference, condition)%>%filter (condition == 2) %>% na.omit(corrdf)%>%select(-condition)
+negativepriorcorrdf<-data2%>%select (regret, joy, competence, Injunctive, descriptive.norms, preference, condition)%>%filter (condition == 3) %>% na.omit(negativepriorcorrdf)%>%select(-condition)
+
+# these correlations are made using correlation package, who provide more details on the correlations
+#nopriorcorrelate<-correlation::correlation(nopriorcorrdf, method = "pearson")
+#positivepriorcorrelate<-correlation::correlation(positivepriorcorrdf, method = "pearson")
+#negativepriorcorrelate<-correlation::correlation(negativepriorcorrdf, method = "pearson")
+
+
+apa.cor.table(nopriorcorrdf, filename="nopriorcorrelation.doc",show.conf.interval = TRUE, show.sig.stars = FALSE, landscape = TRUE)
+apa.cor.table(positivepriorcorrdf, filename="positivepriorcorrelation.doc",show.conf.interval = TRUE, show.sig.stars = FALSE, landscape = TRUE)
+apa.cor.table(negativepriorcorrdf, filename="negativepriorcorrelation.doc",show.conf.interval = TRUE, show.sig.stars = FALSE, landscape = TRUE)
+
+
+```
