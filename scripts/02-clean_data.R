@@ -1,13 +1,9 @@
----
-title: "02-clean_data"
-format: html
----
 ```{r}
 #### Preamble ####
-# Purpose: Replicate the "Inaction We Trust" data cleaning by "Adrien Fillon"
+# Purpose: Replicate the "Inaction We Trust" Study 2 data cleaning by "Adrien Fillon"
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
-# Pre-requisites: none
+# Pre-requisites: Download "Inaction We Trust" Study 2 data
 ```
 
 #### Workspace setup ####
@@ -26,12 +22,14 @@ options(scipen=999, digits =3)
 ```
 
 #### Read Data ####
+# Code referenced from: https://osf.io/kzf3x
 ```{r study 2, echo=FALSE}
 #DOWNLOAD DATA
 data2 <- read.csv("study_2_raw_data.csv",sep = ";" )
 ```
 
 #### Clean Data ####
+# Code referenced from: https://osf.io/kzf3x
 ```{r descriptives2}
 # Code referenced from: https://osf.io/kzf3x
 ## remove variable descriptions + practice data
@@ -120,12 +118,10 @@ S2joyplot <- ggstatsplot::gghistostats(
 S2joyplot
 ```
 
-
 ```{r}
 #Merged Graphs
 
 dplot2 %>% ggplot(aes(value)) + 
   facet_wrap(~ key, scales = "free")+ geom_bar(binwidth = 1)+theme_apa()+
   labs(x = "", y = "")+ scale_x_discrete(limits = c(-5,0,5))+ ylim(0, 250) 
-
 ```
