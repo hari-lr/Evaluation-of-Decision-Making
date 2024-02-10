@@ -22,9 +22,8 @@ options(scipen=999, digits =3)
 ```
 
 #### Read Data ####
-# Code referenced from: https://osf.io/kzf3x
 ```{r study 2, echo=FALSE}
-#DOWNLOAD DATA
+# Code referenced from: https://osf.io/kzf3x
 data2 <- read.csv("study_2_raw_data.csv",sep = ";" )
 ```
 
@@ -58,7 +57,8 @@ dplot2$key<-factor(dplot2$key, levels = c("Preference","Competence",
                                           "Regret", "Joy"))
 
 
-#BAR GRAPHS
+#Distribution Graphs
+# Code referenced from: https://osf.io/kzf3x
 
 S2preferenceplot <- ggstatsplot::gghistostats(
   data = S2Control, # data from which variable is to be taken
