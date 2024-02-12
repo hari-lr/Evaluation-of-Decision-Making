@@ -1,4 +1,10 @@
 ```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
 #### Preamble ####
 # Purpose: Clean the "Inaction We Trust" data by "Adrien Fillon" based on gender
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
