@@ -4,11 +4,11 @@
 # Date: 10 February 2024
 # Pre-requisites: none
 
-#### Workspace setup ####
+#### Work space setup ####
 library(tidyverse)
-library(readxl)
+library(readr)
 
-# Get inactionwetrust_study2.csv
+# Get "inactionwetrust_study2.csv" from Center for Open Science
 # Code referenced from: https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
 study_2_raw_data <-
   read_csv(
@@ -17,7 +17,7 @@ study_2_raw_data <-
     show_col_types = FALSE,
   )
 
-# Save Study 2 raw data
+# Save Study 2 Raw Data
 write_csv(
   x = study_2_raw_data,
   file = "study_2_raw_data.csv"
