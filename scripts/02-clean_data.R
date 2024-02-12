@@ -1,127 +1,142 @@
 ```{r}
-#### Preamble ####
-# Purpose: Replicate the "Inaction We Trust" Study 2 data cleaning by "Adrien Fillon"
-# Author: Hari Lee Robledo, Sky Suh and Francesca Ye
-# Date: 10 February 2024
-# Pre-requisites: Download "Inaction We Trust" Study 2 data
-```
+# Select and save only the "preference", "competence" and "gender" columns
+data_gender <- read.csv("study_2_raw_data.csv", sep = ";" )
+data_gender <- data_gender[, c("preference","competence", "gender")]
 
-#### Workspace setup ####
-```{r setup, include=FALSE}
-# Code referenced from: https://osf.io/kzf3x
-knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+# Convert columns to numeric (assuming "preference" is numeric)
+data_gender$preference <- as.numeric(as.character(data_gender$preference))
+data_gender$competence <- as.numeric(as.character(data_gender$competence))
 
-list.of.packages <- c("report", "dplyr", "psych", "ggplot2", "tidyverse", "corrr", "corrplot", "PerformanceAnalytics", "Hmisc", "ggstatsplot", "jtools", "metan", "ggstatsplot", "ggthemes", "apaTables","insight", "parameters")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[
-  ,"Package"])]
-if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
-invisible(lapply(list.of.packages, library, character.only = TRUE))
+# Drop rows with missing values
+data_gender <- na.omit(data_gender)
 
-# setting formatting options
-options(scipen=999, digits =3)
-```
+## Preference Graphs by Gender
 
-#### Read Data ####
-```{r study 2, echo=FALSE}
-# Code referenced from: https://osf.io/kzf3x
-data2 <- read.csv("study_2_raw_data.csv",sep = ";" )
-```
+# Select Gender 1 (male)
+data_male <- data_gender[data_gender$gender == 1, ]
 
-#### Clean Data ####
-# Code referenced from: https://osf.io/kzf3x
-```{r descriptives2}
-# Code referenced from: https://osf.io/kzf3x
-## remove variable descriptions + practice data
+# Preference Graph by Gender 1 (Male)
 
-data2 <-  data2 [, c("expect", "preference", "competence", "descriptive.norms", "Injunctive", "regret", "joy", "check", "gender", "age", "condition")]
-data2 <- mutate_all(data2, function(x) as.numeric(as.character(x)))
+histogram_male <- ggplot(data_male, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
+  labs(title = "Distribution of Preference (Gender = 1)",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal()
 
+histogram_male
 
-S2Control <- data2 %>% filter (condition == 1)
+# Preference Graph by Gender 1 (Female)
 
-summary2 <- S2Control %>%
-    select(preference, competence, descriptive.norms, Injunctive, regret, joy, age, gender) %>% 
-  psych::describe(quant=c(.25,.75)) %>% as_tibble(rownames="rowname")
-knitr::kable(summary2, digits=2, caption = "Summary descriptives", align = "c")
-tablegender2<-table(S2Control$gender)
-knitr::kable(tablegender2, digits=2, caption = "Summary gender", align = "c")
+data_female <- data_gender[data_gender$gender == 2, ]
 
-dplot2 <- S2Control %>% 
-  select(preference, competence, descriptive.norms, Injunctive, regret, joy) %>%
-  rename(Preference = preference, Competence = competence,
-         "Descriptive norms" = descriptive.norms,
-         "Injunctive norms" = Injunctive, Regret = regret, Joy = joy)%>%
-  gather()
-dplot2$key<-factor(dplot2$key, levels = c("Preference","Competence",
-                                          "Descriptive norms", "Injunctive norms",
-                                          "Regret", "Joy"))
+# Create a histogram for the "preference" column with gender equal to 2
+histogram_female <- ggplot(data_female, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
+  labs(title = "Distribution of Preference (Gender = 2)",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal()
+
+histogram_female
 
 
-#Distribution Graphs
-# Code referenced from: https://osf.io/kzf3x
+#Compare Preference by Gender
+#Code referenced from: https://chat.openai.com/
+histogram_comparison <- ggplot(data_gender, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Comparison of Preference Distribution by Gender",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal() +
+  facet_wrap(~gender, scales = "free")
 
-S2preferenceplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = preference, # numeric variable
-  xlab = "Preference", # x-axis label
-  # title = "Preference", # title for the plot
-  test.value = 0, # test value
-  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-) + theme_minimal()
-S2preferenceplot
 
-S2competenceplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = competence, # numeric variable
-  xlab = "Competence", # x-axis label
-  title = "Competence", # title for the plot
-  test.value = 0,
-   #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-  ) + theme_minimal()
-S2competenceplot
+histogram_comparison
 
-S2desnormativeplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = descriptive.norms, # numeric variable
-  xlab = "Descriptive norms", # x-axis label
-  # title = "Norms", # title for the plot
-  test.value = 0, # test value
-  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-)+ theme_minimal()
-S2desnormativeplot
 
-S2injnormativeplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = Injunctive, # numeric variable
-  xlab = "Injunctive norms", # x-axis label
-  test.value = 0, # test value
-  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-)+ theme_minimal()
-S2injnormativeplot
+# Select Gender 1 (male) and Preference
+data_male <- data_gender[data_gender$gender == 1, ]
 
-S2regretplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = regret, # numeric variable
-  xlab = "Regret", # x-axis label
-  test.value = 0, # test value
-  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-) + theme_minimal()
-S2regretplot
+# Display the first few rows of the cleaned and filtered data
+data_male
 
-S2joyplot <- ggstatsplot::gghistostats(
-  data = S2Control, # data from which variable is to be taken
-  x = joy, # numeric variable
-  xlab = "Joy", # x-axis label
-  test.value = 0, # test value
-  #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
-) + theme_minimal()
-S2joyplot
-```
+histogram_male <- ggplot(data_male, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Preference (Gender = 1)",
+       x = "Preference",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
 
-```{r}
-#Merged Graphs
+histogram_male
 
-dplot2 %>% ggplot(aes(value)) + 
-  facet_wrap(~ key, scales = "free")+ geom_bar(binwidth = 1)+theme_apa()+
-  labs(x = "", y = "")+ scale_x_discrete(limits = c(-5,0,5))+ ylim(0, 250) 
-```
+# Select Gender 2 (female) and Preference
+data_female <- data_gender[data_gender$gender == 2, ]
+
+# Display the first few rows of the cleaned and filtered data
+data_female
+
+# Create a histogram for the "preference" column with gender equal to 2
+histogram_female <- ggplot(data_female, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Preference (Gender = 2)",
+       x = "Preference",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
+
+histogram_female
+
+
+#Compare Preference by Gender
+#Code referenced from: https://chat.openai.com/
+histogram_comparison <- ggplot(data_gender, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Comparison of Preference Distribution by Gender",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  facet_wrap(~gender, scales = "free")
+
+
+histogram_comparison
+
+
+
+# Select Gender 1 (male) and Competence
+data_male <- data_gender[data_gender$gender == 1, ]
+
+# Display the first few rows of the cleaned and filtered data
+data_male
+
+histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Competence (Gender = 1)",
+       x = "Competence",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
+
+histogram_male_competence
+
+
+
+# Select Gender 2 (female) and Competence
+data_female <- data_gender[data_gender$gender == 2, ]
+
+# Display the first few rows of the cleaned and filtered data
+data_female
+
+histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Competence (Gender = 2)",
+       x = "Competence",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
+
+histogram_female_competence
