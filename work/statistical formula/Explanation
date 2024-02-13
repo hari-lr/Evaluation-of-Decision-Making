@@ -1,0 +1,10 @@
+For each gender graph of male and female, mean, median and mode are basic statistic measurements as the three central tendency measurements for providing insight of the distribution of the data
+using mean, known as average, to present the summary of the values in the dataset with the cooperation with extreme values and helpful for the symmetric distributions for the no outliers even for the normal distribution like this.
+Both median and mode are for arranging the order that help present the central value better for the skewered distributions.
+Mean, median, and mode are used in statistics to summarize and describe the central tendency of a dataset. The choice of which measure to use depends on the data distribution, the presence of outliers, and the specific goals of the analysis.
+For standard deviation, we are using for measuring and presenting the variability of the data set in the values as the measure of variability and data analysis to understand the better.
+Using t-test for determining the significant differences between two comparison groups, particularly, normal distributions, for example, if you see the male and female, you will see the not significantly differences between two graphs
+which p-value of male is 0.1243 and t-test shown as 1.1588 while the significance level set as 0.05 (95%) which the result is not significant fixed as one-tailed and also similarly, p-value of female graph is 0.12379 and the t-test (score) is -1.1618 and set siginificance level as 0.05 (95%)
+with the one-tailed hypothesis but the result shows it is not significant which t-test helps to understand what is the result looks like and comparing the context of the two variables groups 
+Using p-value for the accuracy and help to t-test for the comparison and see whether it is significant or not. 
+For Degree of Freedom is supporting to solve the p-value and t-test which is essential to support the variables in the graph. 

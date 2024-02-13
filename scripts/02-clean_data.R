@@ -1,14 +1,27 @@
+<<<<<<< HEAD
 ### Workspace Setup ###
 
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
 
+=======
+>>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f
 #### Preamble ####
 # Purpose: Clean the "Inaction We Trust" data of Study 2 by "Adrien Fillon" based on gender
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
+<<<<<<< HEAD
+=======
+
+### Workspace Setup ###
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
+>>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f
 
 #### Clean Data ####
 # Select and save only the "preference", "competence" and "gender" columns
@@ -20,7 +33,7 @@ data_gender <- data_gender[, c("preference","competence", "gender")]
 data_gender$preference <- as.numeric(as.character(data_gender$preference))
 data_gender$competence <- as.numeric(as.character(data_gender$competence))
 
-# Drop rows with missing values
+# Skip rows with missing values
 data_gender <- na.omit(data_gender)
 
 data_gender
@@ -35,14 +48,14 @@ data_male <- data_gender[data_gender$gender == 1, ]
 histogram_male <- ggplot(data_male, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
   scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Preference (Gender = 1)",
+  labs(title = "Distribution of Males by Preference",
        x = "Preference",
        y = "Frequency") +
   theme_minimal()
 
 histogram_male
 
-# Preference Graph by Gender 1 (Male)
+# Preference Graph by Gender 2 (Female)
 
 data_female <- data_gender[data_gender$gender == 2, ]
 
@@ -50,7 +63,7 @@ data_female <- data_gender[data_gender$gender == 2, ]
 histogram_female <- ggplot(data_female, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
   scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Preference (Gender = 2)",
+  labs(title = "Distribution of Females by Preference",
        x = "Preference",
        y = "Frequency") +
   theme_minimal()
@@ -79,7 +92,7 @@ data_male <- data_gender[data_gender$gender == 1, ]
 
 histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Competence (Gender = 1)",
+  labs(title = "Distribution of Males by Competence ",
        x = "Competence",
        y = "Frequency") +
   scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
@@ -93,7 +106,7 @@ data_female <- data_gender[data_gender$gender == 2, ]
 
 histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Competence (Gender = 2)",
+  labs(title = "Distribution of Females by Competence",
        x = "Competence",
        y = "Frequency") +
   scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
@@ -116,4 +129,8 @@ histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
 
 histogram_comparison_competence
 
+<<<<<<< HEAD
 
+=======
+```
+>>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f

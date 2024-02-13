@@ -1,0 +1,50 @@
+#Population graph
+Normal Distribution 
+Mean (μ) = -0.4115
+Median = 0
+Mode = 0
+Standard Deviation (σ) = 2.293
+Variance (σ^2) = 5.2598
+Minimum = -5
+Maximum = 5
+Range (R) = 10
+Population size (N) = 452
+sum = -186
+
+#Male graph 
+Normal Distribution 
+Mean = -0.64284
+Median = 0
+Mode = 0
+Sample size (n) = 137
+Population size = 460
+degree of freedom (df) = n - 1 = 137 - 1 = 136
+Sum of sample = -88
+Significance level = 0.05 = 95%
+Standard Deviation (s) = 2.331804
+Variance (s^2) = 5.437
+Standard Error (SE) = 0.1992
+Maximum = -5
+Minimum = 5
+Range (R) = 10
+t-test = 1.1588
+p-value = 0.124284
+
+#Female graph 
+Normal Distribution 
+Mean = -0.68056
+Median = 0
+Mode = 0
+Sample size (n) = 144
+Population size = 460
+degree of freedom (df) = n - 1 = 144 - 1 = 143
+Sum of sample = -98
+Significance level = 0.05 = 95%
+Standard Deviation (s) = 2.06757
+Variance (s^2) = 4.2748
+Standard Error (SE) = 0.1723
+Maximum = -5
+Minimum = 5
+Range (R) = 10
+t-test = -1.5618
+p-value = 0.123788

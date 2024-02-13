@@ -1,11 +1,8 @@
-
-```{r}
 #### Preamble ####
 # Purpose: Reproduce the "Inaction We Trust" data of Study 2 by "Adrien Fillon" 
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
-```
 
 #### Workspace setup ####
 ```{r setup, include=FALSE}
