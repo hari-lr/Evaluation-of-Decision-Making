@@ -27,6 +27,7 @@ Standard Error (SE) = 0.1992
 Maximum = -5
 Minimum = 5
 Range (R) = 10
+t-test = 1.1588
 
 #Female graph 
 Normal Distribution 
@@ -44,3 +45,4 @@ Standard Error (SE) = 0.1723
 Maximum = -5
 Minimum = 5
 Range (R) = 10
+t-test = -1.5618
