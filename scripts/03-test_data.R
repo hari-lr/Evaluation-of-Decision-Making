@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Clean Study 2 Raw Data
+# Purpose: Test the cleaned Study 2 Raw Data
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
