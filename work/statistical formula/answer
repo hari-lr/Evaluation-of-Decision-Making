@@ -28,6 +28,7 @@ Maximum = -5
 Minimum = 5
 Range (R) = 10
 t-test = 1.1588
+p-value = 0.124284
 
 #Female graph 
 Normal Distribution 
@@ -46,3 +47,4 @@ Maximum = -5
 Minimum = 5
 Range (R) = 10
 t-test = -1.5618
+p-value = 0.123788
