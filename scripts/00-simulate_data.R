@@ -5,7 +5,7 @@
 # Pre-requisites: none
 
 #### Work Space setup ####
-library(tidyverse)
+library(tibble)
 library(ggplot2)
 
 #### Simulate Dataset of Preference and Competence by Gender ####
@@ -35,7 +35,6 @@ simulated_pref_comp_data
 
 
 #### Preference graphs####
-
 # Male
 data_male <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 1, ]
 
@@ -58,8 +57,8 @@ preference_female <- ggplot(data_female, aes(x = Preference)) +
   theme_minimal()
 preference_female
 
-#### Competence graphs####
 
+#### Competence graphs####
 # Male
 data_male <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 1, ]
 
@@ -72,9 +71,7 @@ competence_male <- ggplot(data_male, aes(x = Competence)) +
 competence_male
 
 # Female
-
 data_female <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 2, ]
-
 
 competence_female <- ggplot(data_female, aes(x = Competence)) +
   geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
@@ -84,8 +81,8 @@ competence_female <- ggplot(data_female, aes(x = Competence)) +
   theme_minimal()
 competence_female
 
-#### Test simulated data ####
 
+#### Test simulated data ####
 # check that participants equal 460
 length(unique(simulated_pref_comp_data$Participant)) == 460
 
@@ -118,4 +115,3 @@ if (sum(test_preference_female$count) == 255) {
   print("The sum of female participant count in Preference graph does not equal 255.")
 }
 
-```
