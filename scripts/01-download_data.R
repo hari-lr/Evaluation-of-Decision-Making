@@ -5,7 +5,6 @@
 # Pre-requisites: none
 
 #### Work space setup ####
-library(tidyverse)
 library(readr)
 
 # Get "inactionwetrust_study2.csv" from Center for Open Science
