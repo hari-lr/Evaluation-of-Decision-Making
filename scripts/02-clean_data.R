@@ -1,27 +1,16 @@
-<<<<<<< HEAD
-### Workspace Setup ###
-
-library(tidyverse)
-library(ggplot2)
-library(dplyr)
-
-=======
->>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f
 #### Preamble ####
 # Purpose: Clean the "Inaction We Trust" data of Study 2 by "Adrien Fillon" based on gender
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
-<<<<<<< HEAD
-=======
+
 
 ### Workspace Setup ###
-```{r}
+
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
-```
->>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f
+
 
 #### Clean Data ####
 # Select and save only the "preference", "competence" and "gender" columns
@@ -129,8 +118,3 @@ histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
 
 histogram_comparison_competence
 
-<<<<<<< HEAD
-
-=======
-```
->>>>>>> 89f871d6a102fb7c4c9b8ce2a70049ced5b2f37f
