@@ -4,6 +4,12 @@
 # Date: 10 February 2024
 # Pre-requisites: none
 
+### Workspace Setup ###
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
 ```{r}
 #### Test cleaned data ####
 
