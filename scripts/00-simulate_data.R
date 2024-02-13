@@ -43,7 +43,7 @@ preference_male <- ggplot(data_male, aes(x = Preference)) +
   geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
   labs(title = "Distribution of Men by Preference",
        x = "Preference",
-       y = "Pariticipant Count") +
+       y = "Participant Count") +
   theme_minimal()
 preference_male
 
@@ -54,7 +54,7 @@ preference_female <- ggplot(data_female, aes(x = Preference)) +
   geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
   labs(title = "Distribution of Women by Preference ",
        x = "Preference",
-       y = "Pariticipant Count") +
+       y = "Participant Count") +
   theme_minimal()
 preference_female
 
@@ -67,7 +67,7 @@ competence_male <- ggplot(data_male, aes(x = Competence)) +
   geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
   labs(title = "Distribution of Men by Competence Perception",
        x = "Competence",
-       y = "Pariticipant Count") +
+       y = "Participant Count") +
   theme_minimal()
 competence_male
 
@@ -80,7 +80,7 @@ competence_female <- ggplot(data_female, aes(x = Competence)) +
   geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
   labs(title = "Distribution of Women by Competence Perception",
        x = "Competence",
-       y = "Pariticipant Count") +
+       y = "Participant Count") +
   theme_minimal()
 competence_female
 
