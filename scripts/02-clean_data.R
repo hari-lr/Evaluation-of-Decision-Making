@@ -1,16 +1,15 @@
-### Workspace Setup ###
-```{r}
-library(tidyverse)
-library(ggplot2)
-library(dplyr)
-```
-
 ```{r}
 #### Preamble ####
 # Purpose: Clean the "Inaction We Trust" data of Study 2 by "Adrien Fillon" based on gender
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
+```
+### Workspace Setup ###
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
 ```
 
 #### Clean Data ####
