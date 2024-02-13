@@ -18,7 +18,6 @@ Median = 0
 Mode = 0
 Sample size (n) = 137
 Population size = 460
-f = 0.15
 degree of freedom (df) = n - 1 = 137 - 1 = 136
 Sum of sample = -88
 Significance level = 0.05 = 95%
