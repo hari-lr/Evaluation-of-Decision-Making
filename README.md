@@ -17,4 +17,4 @@ The repo is structured as:
 - Run `outputs/paper/paper.qmd` to generate the PDF of the paper
 
 ## Statement on LLM usage
-LLMs were used for some aspects of the code, particularly in the data simulation script (00_simulate_data.R). The LLM used was ChatGPT. Receipts are available in the `inputs` folder.
+LLMs were used for some aspects of the code; particularly in the data simulation script (00_simulate_data.R) and the data cleaning script (02_clean_data.R). The LLM used was ChatGPT. Receipts are available in the `inputs` folder.
