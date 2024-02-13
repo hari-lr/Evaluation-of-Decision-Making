@@ -123,6 +123,37 @@ histogram_comparison <- ggplot(data_gender, aes(x = preference)) +
 print(histogram_comparison)
 This code uses facet_wrap(~gender, scales = "free") to create side-by-side histograms for "gender = 1" and "gender = 2." Adjust the column names and types based on your actual dataset.
 
+3. 
+User:
+data_gender <- read.csv("study_2_raw_data.csv", sep = ";" )
+data_gender <- data_gender[, c("preference","competence", "gender")]
+
+# Convert columns to numeric (assuming "preference" is numeric)
+data_gender$preference <- as.numeric(as.character(data_gender$preference))
+data_gender$competence <- as.numeric(as.character(data_gender$competence))
+
+# Skip rows with missing values
+data_gender <- na.omit(data_gender)
+
+data_gender give me a code that checks there are 452 rows
+ChatGPT
+To check if there are exactly 452 rows in your dataset data_gender after performing the operations you mentioned, you can use the following code:
+
+r
+Copy code
+# Check if the number of rows in data_gender is 452
+if (nrow(data_gender) == 452) {
+  print("The number of rows in data_gender is 452.")
+} else {
+  print("The number of rows in data_gender is not 452.")
+}
+This code simply compares the number of rows in data_gender to 452 and prints a message indicating whether the condition is met or not.
+
+
+
+
+
+
 
 
 
