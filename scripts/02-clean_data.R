@@ -1,20 +1,16 @@
 ### Workspace Setup ###
-```{r}
+
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
-```
 
-```{r}
 #### Preamble ####
 # Purpose: Clean the "Inaction We Trust" data of Study 2 by "Adrien Fillon" based on gender
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
 # Pre-requisites: none
-```
 
 #### Clean Data ####
-```{r}
 # Select and save only the "preference", "competence" and "gender" columns
 data_gender <- read.csv("study_2_raw_data.csv", sep = ";" )
 data_gender <- data_gender[, c("preference","competence", "gender")]
@@ -28,9 +24,6 @@ data_gender$competence <- as.numeric(as.character(data_gender$competence))
 data_gender <- na.omit(data_gender)
 
 data_gender
-```
-
-```{r}
 
 ## Preference Graphs by Gender
 
@@ -79,10 +72,6 @@ histogram_comparison_preference <- ggplot(data_gender, aes(x = preference)) +
 
 histogram_comparison_preference
 
-```
-
-
-```{r}
 ## Competence Graphs by Gender
 
 # Select Gender 1 (male) and Competence
@@ -127,5 +116,4 @@ histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
 
 histogram_comparison_competence
 
-```
 
