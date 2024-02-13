@@ -5,12 +5,10 @@
 # Pre-requisites: none
 
 ### Workspace Setup ###
-```{r}
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
-```
-```{r}
+
 #### Test cleaned data ####
 
 # check if there are  452 rows in the cleaned data_gender data set 
@@ -44,7 +42,6 @@ if (nrow(data_other) == 7) {
   print("The number of rows other participants in data_gender is not 7.")
 }
 
-
 # check that preference and competence scores are between -5 and 5
 data_gender$preference |> min() == -5
 data_gender$preference |> max() == 5
@@ -73,4 +70,3 @@ if (sum(test_preference_female$count) == 308) {
   print("The sum of female participant count in Preference graph is not 308.")
 }
 
-```
