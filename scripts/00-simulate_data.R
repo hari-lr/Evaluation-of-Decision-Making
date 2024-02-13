@@ -1,4 +1,3 @@
-```{r}
 #### Preamble ####
 # Purpose: Data simulation of Preference and Competence perception of action and inaction agents by gender. 
 # Author: Hari Lee Robledo, Sky Suh and Francesca Ye
