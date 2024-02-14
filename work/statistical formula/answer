@@ -1,4 +1,4 @@
-#Population graph
+#Population graph for preference
 Normal Distribution 
 Mean (μ) = -0.4115
 Median = 0
@@ -11,7 +11,7 @@ Range (R) = 10
 Population size (N) = 452
 sum = -186
 
-#Male graph 
+#Male graph for preference
 Normal Distribution 
 Mean = -0.64284
 Median = 0
@@ -28,9 +28,10 @@ Maximum = -5
 Minimum = 5
 Range (R) = 10
 t-test = 1.1588
-p-value = 0.124284
+p-value = 0.248568
+Not significant based on the two-tailed hypothesis   
 
-#Female graph 
+#Female graph for preference
 Normal Distribution 
 Mean = -0.68056
 Median = 0
@@ -47,4 +48,67 @@ Maximum = -5
 Minimum = 5
 Range (R) = 10
 t-test = -1.5618
-p-value = 0.123788
+p-value = 0.120848
+Not significant based on the two-tailed hypothesis 
+
+#Independent t-test for two samples for preference
+0.143362
+
+
+#Population graph for competence
+Normal Distribution 
+Mean (μ) = -0.38274336
+Median = 0
+Mode = 0
+Standard Deviation (σ) = 1.9064
+Variance (σ^2) = 3.63436
+Minimum = -5
+Maximum = 5
+Range (R) = 10
+Population size (N) = 452
+sum = -173
+
+#Male graph for competence
+Normal Distribution 
+Mean = -0.6715
+Median = 0
+Mode = 0
+Sample size (n) = 137
+Population size = 452
+degree of freedom (df) = n - 1 = 137 - 1 = 136
+Sum of sample = -92
+Significance level = 0.05 = 95%
+Standard Deviation (s) = 1.9930375
+Variance (s^2) = 3.9721984
+Standard Error (SE) = 0.170277
+Maximum = -5
+Minimum = 5
+Range (R) = 10
+t-test = 1.6960
+p-value = 0.092174
+Not significant for the two-tailed hypothesis 
+
+#Female graph for competence
+Normal Distribution 
+Mean = -0.4792
+Median = 0
+Mode = 0
+Sample size (n) = 144
+Population size = 452
+degree of freedom (df) = n - 1 = 144 - 1 = 143
+Sum of sample = -69
+Significance level = 0.05 = 95%
+Standard Deviation (s) = 1.6170
+Variance (s^2) = 2.6149
+Standard Error (SE) = 0.134757
+Maximum = -5
+Minimum = 4
+Range (R) = 10
+t-test = -0.71556
+p-value = 0.475775
+Not significant for the two-tailed hypothesis 
+
+#Independent t-test for two samples for competence
+0.885873
+
+
