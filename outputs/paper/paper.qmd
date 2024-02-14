@@ -1,0 +1,248 @@
+---
+title: "Is There a Correlation Between Preference and Perceptions of Inaction and Action in Decision-Making and Gender? An Analysis of Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes Study 2."
+author: "Francesca Ye, Sky Suh and Hari Lee Robledo"
+date: "today"
+date-format: long
+abstract: "This paper investigates the correlation between preference and perceptions of inaction versus action in decision-making and gender to replicate on the previous studies about the findings regarding gender disparities in moral judgment preference. Building on interdisciplinary research in cognitive science, psychology, and philosophy, the study explores and examines the preference and perceived competence of different decision-making agents by gender. This report uses the  Study 2 data set from the article “Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes” for creating graphs and conducting statistical analysis. Since this research topic can be significant for further research, we place more weight on the discussion and further research section to inform and address the interplay of social factors."
+thanks: "Code and data from this analysis are available at: https://github.com/hari-lr/Preference-and-Perception-of-Decision-Making"
+toc: true
+number-sections: true
+bibliography: references.bib
+format: pdf
+---
+
+```{r}
+#| message: false
+#| echo: false
+#| warning: false
+#### Workspace set-up ####
+
+## Load packages
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+
+## read in cleaned data 
+data_gender = read_csv(
+  file = "data_gender.csv",
+  show_col_types = FALSE
+)
+
+data_male = read_csv(
+  file = "data_male.csv",
+  show_col_types = FALSE
+)
+
+data_female = read_csv(
+  file = "data_female.csv",
+  show_col_types = FALSE
+)
+
+```
+
+## Introduction
+
+Between the intersecting disciplines of cognitive science, psychology, and philosophy, there has been investigation on whether or not there are gender differences when it comes to moral judgements. “Consequences, norms, and generalized inaction in moral dilemmas: The CNI model of moral decision-making” published in *Journal of Personality and Social Psychology* outlined the CNI model to help researchers assess the underlying influences of decision-making. Bertram Gawronski, Joel Armstrong, Paul Conway, Rebecca Freisdorf, and Mandy Hutter note that there are two main methods for decision making which are utilitarianism and deontology. The former believes that the morality of choices is dependent on the consequences whilst the latter believes that the morality of choices is dependent on their consistency with moral norms as ascribed by a specific culture. [@cnipaper] In their studies, they found that there was some evidence that men were more utilitarian and therefore, preferred action, in comparison to women who tended to be more deontological and theremore, preferred inaction [@cnipaper]. During their studies that focused on presenting the traditional trolley paradigm, they found that men were more likely to select action as the preferred choice as women had stronger sensitivity to moral norms and a general preference towards inaction [@cnipaper].
+
+Yachun Qian, Yoshiyuki Takimoto, Lu Wang and Akira Yasumura’s journal article “Exploring cultural and gender differences in moral judgment: A cross-cultural study based on the CNI model” in *Current Psychology* examined if there was a difference in moral judgment between cultures and gender. Focusing specifically on the gender aspects of their research, they found that women were more sensitive to having their moral judgment influenced by moral norms as ascribed by their respective culture, similar to the conclusions made by Bertram et al. However, they concluded that action versus inaction preference did not differ significantly across gender, rather between cultures [@culturepaper]. Valerio Capraro and Jonathan Sippel’s article “Gender differences in moral judgment and the evaluation of gender-specified moral agents'' in *Cognitive Processing* also investigated the responses of moral dilemmas such as the traditional trolley paradigm which found that research participants did not feel differently to how a person should act in a moral dilemma based on the gender of a moral agent [@genderpaper]. These differences in results across all three papers indicate that the field does not yet have a consensus on whether or not there are differences in decision-making between genders.
+
+“Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents” in *Social Psychology* by Adrien A. Fillion, Luna Strauch, and Gilad Feldman sought to investigate if there was a preference between action versus inaction for high-risk decisions that result in a negative outcome [@giladpaper] over three different studies. In their findings, they concluded that inaction against were preferred and perceived as more competent than action agents. This is an interesting journal article as the replication package’s raw data reveals that gender was recorded for each respondent; however, differences in response by gender were not touched upon in the research. By investigating the differences in preference and perceived competence of different decision-making agents by gender in this paper, further clarity on the whether or not differences exist between gender on moral judgment could be drawn. Since this paper does not directly ask participants for their decision in a moral dilemma, it is possible that the process of moral judgment can be more clearly discerned due to the degree of distance from the scenario. Decision-making itself is also an integral part of assessing moral dilemmas since both processes are founded in choice, therefore it is worthwhile to investigate the process of decision-making to inform assessment of moral judgment. By assessing the differences in preference and perceived competence of different decision-making agents, the existence of gender-based moral judgment approaches can be further researched. 
+
+This report takes the data from the Study 2 from “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents” to examine if there are differences in moral judgment between gender. The estimands of interest from the data set are preference and perceived competence between action and inaction agents by gender. Data was taken from the *Center for Open Science* and published directly by Fillion, Strauch, and Feldman. To examine whether or not there are differences in preferences and perceived competence of different decision-making actions between gender, graphical analysis was conducted to visualize the responses of study participants. Summary statistics in addition to t-test and p-values calculated in order to discern if the differences in responses were of statistical significance. Report findings reveal that there are no statistical differences in the preference and perceived competence between gender which could indicate that there are other factors aside from gender that influence moral judgment preferences. 
+
+The Data section of this report aims to discuss the characteristics of the Study 2 data set used in addition to the methods of cleaning applied to get workable data for this report. This report’s Results section highlights trends discovered through graphical analysis in tandem with statistical analysis of the preference and perceived competence responses using t-tests and p-values to determine statistical insignificance. The Discussion section notes possible analytical limitations and measurement errors in the data sets in addition to overall insights of the report’s analysis. Specific discussion will surround the validity of assigning utilitarianism as a trait of men in addition to addressing whether or not there are differences in decision-making approaches based on gender. To summarize the report’s content, the Conclusion section briefly touches on the overall insights on moral judgment and gender that can be distilled from the findings of this report. 
+
+## Data
+### Data Description
+
+For Study 2 of “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents”, 460 participants completed the study including 137 men, 308 women, and 15 unknown gender or other gender identities [@giladpaper]. Participants were recruited through Prolific which is an online research platform used to collect survey data with financial incentives [@giladpaper]. All participants were assigned one of three prior conditions as their scenario for answering the study questions. No prior outcomes meant participants were simply told the decision-making agents had invested clients’ money in different companies. Negative prior outcomes meant that participants were told both decision-making agents had invested clients’ money in different companies and had both lost money in the past. Positive prior outcomes meant that participants were told both decision-making agents had invested clients’ money in different companies and had both earned money in the past [@giladpaper].
+
+After each participant was given one of the background stories, an adjusted version of the scenario presented in the article’s Study 1 and 1b was presented. Participants were told that the inaction agent (Paul) did not switch a client’s stocks to another company which would have resulted in £1.2 million in growth if the stocks had been switched. The action agent (George) did switch a client’s stocks to another company but could have made £1.2 million more in earnings if the stock remained at the original company [@giladpaper]. Preference was measured by asking participants, “Which advisor-Paul or George-would you prefer?” [@giladpaper] Participants were then asked to respond with a number from a scale of -5 and 5. Lower numbers represented preference for inaction and higher numbers represented preference for action. Perceived competence was measured by asking participants, “Which advisor-Paul or George-is more competent?” [@giladpaper]. Again, participants were then asked to respond with a number from a scale of -5 and 5 with the same assignments for action and inaction on the scale.
+
+### Data Cleaning 
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: tbl-cleaned
+#| tbl-cap: Sample of Cleaned Preference and Competence Perception by Gender Data
+
+# Code referenced from: https://github.com/InessaDeAngelis/Toronto_Elections/blob/main/outputs/paper/toronto_elections_paper.qmd
+
+head (data_gender, 5) |>
+  kable(
+    col.names = c("Preference","Competence","Gender"),
+  booktabs = TRUE
+  )
+```
+Data used in this report was taken from the *Center for Open Science*, an open platform that aims to support collaborative research, from a project folder that contains all relevant replication data as uploaded by Fillion, Staunch, and Feldman [@giladpaper]. The specific data set was titled `inactionwetrust_study2.csv` and downloaded directly from the *Center for Open Science*. The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr] package. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], and `dplyr` [@dplyr] packages. To create tables and graphs for data visualization of the datasets, the `ggplot2` [@ggplot2] and `knitr` [@knitr] packages were used.
+
+To clean the data, the `preference`, `competence`, and `gender` columns from the raw data set for Study 2 were selected and saved as a new data set. After completing this, the `preference` and `competence` columns had their values converted to numeric to ensure all the data would be easily mergeable for graphing and statistical analysis. As well, the cleaned data set was run through the `na.omit()` function so rows with empty values would be skipped. The reason for skipping rows with empty values was done in order to ensure they would not affect the graphical and statistical results. This is because rows with empty values in either the `preference` and `competence` columns would be designated as a 0 value which would have skewed graphical and statistical results since the measurement scale set out in the original journal article uses 0 as a neutral benchmark between inaction and action. As well, the 15 participants that did not disclose their gender or selected others were kept in the cleaned data set but were not used for statistical or graphical analysis. The reason for this decision was to respect the dignity of participants by not placing them within the gender binary in addition to this group’s smaller sample size being less likely to draw meaningful insights. The final cleaned version of the Study 2 data set has these changes reflected in its table version as seen in @tbl-cleaned data . 
+
+## Results
+
+Bar graphs were created using `ggplot2` [@ggplot2] to visualize the cleaned data set to view preference and perceived competence of different types of decision-making approaches. A bar graph was created for each gender, men and women, to view the frequency of responses on the prescribed scale of measurement from -5 to 5 for preference. Another pair of bar graphs were also created for each gender to view the frequency of responses along the scale of measurement from -5 to 5 for perceived competence of different decision-making approaches. While this scale served as the x-axis of the bar graphs, the y-axes values ranged between 0 to 180 with incremental increases by 20 in order to capture all data values.
+
+### Preference of Action versus Inaction Agents by Gender
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-preferencemale
+#| fig-cap: Distribution of Male Participants by Preference
+
+histogram_male <- ggplot(data_male, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
+  labs(title = "Distribution of Males by Preference",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal()
+histogram_male
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-preferencefemale
+#| fig-cap: Distribution of Female Participants by Preference
+
+histogram_female <- ggplot(data_female, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
+  labs(title = "Distribution of Females by Preference",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal()
+histogram_female
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-preferenceboth
+#| fig-cap: Comparison of Gender Distribution by Preference
+
+# Preference Comparison Graph 
+histogram_comparison_preference <- ggplot(data_gender, aes(x = preference)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Comparison of Preference Distribution by Gender",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  facet_wrap(~gender, scales = "free")
+histogram_comparison_preference
+```
+
+
+As seen when viewing @fig-preferencemale, 0 appears to be the most popular response from men which would indicate that a plurality of  study participants did not have a preference between action and inaction agents. However, the bar graph also shows that responses do seem to skew more towards the left or negative numeric value side which could imply that there is a general trend of men preferring inaction rather than action. Similarly, for women 0 appears to be the most popular response from graphical interpretation as seen in @fig-preferencefemale. While it does appear that more women gave a positive numeric value, therefore indicating preference for action, the overall graph does seem to also skew more to the left side. Since there were just over two times the amount of women study participants, it is possible the graph seems to reflect more preference towards action due to an increased amount of data points.
+
+For both men and women, the median and mode for preference is 0 which indicates that a majority of study participants did not have any preference for decision-making approaches. For men, the average preference response was -0.64284 and -0.68056 for women. This means that on average, men and women in this study both slightly preferred inaction over action with women trending minimally more towards inaction preference. Additionally, the standard deviation for men was 2.331804 and 2.06757 for women which can be considered a wide variation since the scale of possible values is relatively small. Combined with knowledge of the middling averages for both genders, it can be concluded that both graphs somewhat mirror a normal distribution since there is a clear mean at 0 which is also where data points are most frequently plotted. 
+
+@fig-preferenceboth highlights the differences between the responses of men and women but statistical analysis can aid in assessing whether or not there is a difference in decision-making approaches between genders. To assess if the observed data is statistically significant, the p-values for each data set by gender was calculated. The null hypothesis was “there is no significant correlation between gender and decision-making approach preference.” The p-value for men was 0.248568 and 0.120848 for women. Since each p-value is above α = 0.05, there is no statistical significance between preference and gender, therefore the null hypothesis is accepted.
+
+
+### Perceived Competence of Action and Inaction Agents by Gender
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-competencemale
+#| fig-cap: Distribution of Male Participants by Competence Perception
+
+# Competence Graph by Gender 1 (Male)
+histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Males by Competence ",
+       x = "Competence",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
+histogram_male_competence
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-competencefemale
+#| fig-cap: Distribution of Female Participants by Competence Perception
+
+# Competence Graph by Gender 2 (Female)
+histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Distribution of Females by Competence",
+       x = "Competence",
+       y = "Frequency") +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  theme_minimal()
+histogram_female_competence
+```
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+#| label: fig-competenceboth
+#| fig-cap: Comparison of Gender Distribution by Competence
+
+# Competence Comparison Graph 
+histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Comparison of Competence Distribution by Gender",
+       x = "Preference",
+       y = "Frequency") +
+  theme_minimal() +
+  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
+  facet_wrap(~gender, scales = "free")
+histogram_comparison_competence
+```
+
+
+
+@fig-competencemale visually reveals that 0 also appears to be the most popular response which indicates that a plurality of men that participated in the study did not perceive action or inaction agents as more competent. The bar graph does highlight that there are more responses of a negative numerical value in comparison to responses of a positive numerical value with 0 as the middle value. This trend towards the left side could indicate that inaction agents are generally perceived as more competent by men. @fig-competencefemale emphasizes a similar pattern with 0 being the value with a plurality of all responses as seen during graphical interpretation. Interestingly, the graph visualizing the responses of perceived competence by women reveals a stronger trend towards negative numerical values in contrast to the responses with a positive numerical value. Since there were over two times the amount of women participating than men in the study, the increased sample size could have amplified trends in data when graphed. However, both graphs reveal there is a noticeable trend toward inaction agents being perceived as more competent by both genders. 
+
+For both men and women, the median and mode for preference is 0 which indicates that a majority of study participants did not have any preference for decision-making approaches. For men, the average preference response was -0.6715 and -0.4792 for women. This means that on average, men and women in this study both slightly perceived inaction as more competent over action with men trending minimally more towards perceiving inaction to be more competent. Additionally, the standard deviation for men was 1.9930375 and 1.6170 for women which can be considered a wide variation since the scale of possible values is relatively small. Considering the middling averages for both genders, it can be concluded that both graphs somewhat mirror a normal distribution since there is a clear mean at 0 which is also where data points are most frequently plotted.
+
+@fig-competenceboth highlights the differences between the responses of men and women but statistical analysis can aid in assessing whether or not there is a difference in decision-making approaches between genders. To assess if the observed data is statistically significant, the p-values for each data set by gender was calculated. The null hypothesis was “there is no significant correlation between gender and perceived competence of  decision-making approaches.” The p-value for men was 0.0.092174 and 0.475775 for women. Since each p-value is above  α = 0.05, there is no statistical significance between preference and gender, therefore the null hypothesis is accepted.
+
+
+## Discussion
+### Report Findings
+In Fillion, Stauch, and Feldman’s original article, they sought to examine the preference and perceived competence of action and inaction agents. They concluded that inaction agents are preferred and perceived as more competent [@giladpaper]. This report also replicates the findings in the original article since both men and women appear to prefer and perceive inaction agents as more competent based on analysis of the mean values from the scale of -5 to 5. However, this report also finds that both men and women have a trend towards preferring and perceiving inaction agents as more competent. Therefore, it can also be stated that this report found there to be no major differences in the perception of action and inaction agents between genders. This report also finds that there is no indication that women are more likely to be influenced by moral norms in decision-making on a statistical level.
+
+### Implications: No Indication of Utilitarianism Being Prevalent Amongst Men in Decision-Making Approaches
+
+One of the most notable findings of this report is the tendency for men to prefer and perceive inaction agents as more competent in comparison to inaction agents. Based on analysis of Fillion, Staunch, and Gilad’s data, this conclusion was apparent based on graphical interpretation of the data in addition to statistical analysis of the mean response value for both preference and perceived competence. Furthermore, this report also found that men actually perceived inaction to be more competent than women on average which disputes the ideas stated in other papers which conclude men are inclined towards action. This is significant because it contributes to the growing number of research that supports the idea that men prefer action, and therefore utilitarian approaches to decision-making. “Consequences, norms, and generalized inaction in moral dilemmas: The CNI model of moral decision-making” concluded from their research that men are generally more utilitarian when it comes to applying moral judgment which they affirm that results in preference towards action [@cnipaper]. However, the findings of this report found that men actually preferred inaction agents rather than action as the mean value for responses of preference and perceived competence both skewed towards negative numeric values. Since this report focuses specifically on decision-making, the scenario presented does not allow for conclusions to be made on whether or not men are more likely to be utilitarian. However, when following the framework presented by Gawronski et al. that states action is a result of an utilitarian approach, it can be concluded in this report that men appear to not be utilitarian when making preference and competence judgments. This also indicates that this report’s findings support the conclusions made in  “Exploring cultural and gender differences in moral judgment: A cross-cultural study based on the CNI model” which stated that action and inaction preference did not vary across gender. This report supports that claim since the statistical analysis of the data revealed that both men and women had similar mean values for preference towards inaction. 
+
+### Implications: No Significant Differences in Decision-Making Based on Gender Influences
+Aside from action versus inaction preferences, this report’s findings reveal that there are no major differences in decision-making references and moral judgment across genders. “Consequences, norms, and generalized inaction in moral dilemmas: The CNI model of moral decision-making” and  “Exploring cultural and gender differences in moral judgment: A cross-cultural study based on the CNI model” both conclude that women are more susceptible to having their moral judgments influenced by moral norms which is contrasted by men that are more likely to have more disregard for moral norms [@culturepaper] [@cnipaper].  In this report, it was found that not only did men and women prefer and perceive inaction to be more competent but the differences in the level of trends towards inaction were not significant. Looking at the mean values for preference and perceived competence, the differences were less than 1.00000 apart from each other. Due to the relatively small mean differences and standard deviations across genders when it came to valuing inaction, it can be concluded that women are not uniquely more susceptible to influence by moral norms. Although Qian et al.’s, research concluded that inaction preference was not across gender differences, they did state that women were more susceptible to influence by moral norms [@culturepaper]. Based on the reasoning outlined, the report finds that this is not necessarily proven since the difference in preference and perceived competence between men and women were quite similar. As a result of the similarities in mean values, there is no evidence to say women are more influenced by moral norms as this would mean the average responses between genders would have more variation. 
+
+Considering the findings of “Gender differences in moral judgment and the evaluation of gender-specific moral agents'' which concluded that there were no statistically significant differences in perceptions of how men and women should respond to a moral dilemma, this report concludes that men and women do not have statistically different preferences and perceptions of competencies for action versus inaction decision-making approaches which creates an argument that gender simply does not have a significant bearing on decision-making. Since gender is not a factor in how decisions should be made and each gender does not produce dissimilar preferences, it can be concluded that gender is not a largely influential factor in the different decision-making actions of people. 
+
+### Ethics and Bias Considerations
+Looking at the data collection methodology, the online research platform Prolific was used to recruit participants for the studies in Fillion, Stauch, and Feldman’s studies which sees participants being compensated for their time. However, there are possible concerns of bias in the data as a result of social desirability bias influencing answers given in surveys as a result of having knowledge of the financial incentive behind participation in the study [@surveypaymentethics]. Since Prolific is an online platform that vets suitable participants for researchers, it is possible that the characteristics of the participants on the platform can be skewed towards the ideal participants in the perspective of Prolific. This could mean the study data might not be as representative of each gender as possible.
+
+Considering the small sample size that the dataset for this report is based on, making definitive statements on gender-based characteristics should be cautioned. As noted in “Sex and Gender Equity in Research: rationale for the SAGER guidelines and recommended use” in *Research Integrity and Peer Review*, gender-based studies should aim to thoroughly bring an awareness to the analysis of gender in the study design and limitations sections to prevent broad statements on gender to be taken as definitive fact [@genderethics] While this report did not find gender significant to decision-making approaches, it is entirely possible that there are other studies that might produce a different result which can be attributed to the differences in the design of individual studies. As well, comparing the findings of this study to other research helps ethically situate the report findings in the broader field of literature surrounding the topic that provides context on the nature of gender-based analysis in this field. 
+
+### Limitations
+When assessing the data set used for this report, there are some limitations to the data that might hamper the strength of the report’s findings. A notable limitation is the lack of insight into the study design methodology. In the journal article of “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents”, there is no mention of the participant criteria for the three studies conducted. Since there is no information on the selection criteria, it might be hard to draw definitive statements on gender-based analyses since the participant pool cannot be assessed for whether or not it is representative of the wider population. 
+
+The data collection methodology could also be a limitation since knowledge on how data was collected and stored is not available. Notably, during the creation of this report, Fillion, Stauch, and Feldman’s paper stated that for Study 2 there were 138 men, 308 women, 7 other, and 7 unknown. However, when manually reading the data downloaded from the repository on *Center for Open Science*, the participant demographics were 137 men, 308 women, 7 other, and 8 unknown. While this might be a minor error between the data and the journal article, it calls the accuracy of the data collected into question. It could be possible that there are more minor errors that might impact the graphical and statistical analysis of the data set. 
+
+Looking at the data itself, there are also limitations regarding its sample size. For a gender-based study, this report would need a far larger sample size than what is available from the “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents” Study 2 data set. The small sample size does mean that it is difficult to make a definitive statement on whether or not there are differences in decision-making approaches based on gender. Additionally, the data used in this report focuses on the preference and perceived competence of action and inaction agents. While this report analyzes the perceptions of different decision-making approaches, it cannot make a statement on actual decisions made. Understandably, the logical process for assessing another person’s judgment is different from the logical process of making a personal decision. This tension between logical perception versus actual action is a point of tension in this report and therefore a limitation to its findings. 
+
+## Future Research
+Since this paper found that decision-making perceptions did not vary vastly between gender, it would be worthwhile to investigate other factors that could influence decision-making. Looking towards the broader literature in the field, “Exploring cultural and gender differences in moral judgment: A cross-cultural study based on the CNI model” had similar findings on gender that concluded that gender did not have a significant effect on preference towards inaction. This article also delved deeper into research concerning whether or not an individual’s cultural positionality had an impact on moral judgment [@culturepaper]. This would be a worthwhile avenue to explore further in discerning the factors that influence decision-making since this study found there were differences based on cultural axes. 
+
+Upon further reflection of the specific data set used in this report, the Study 2 data set also includes the age of study participants. It would be interesting to examine whether or not perceptions of decision-making approaches differ between generational age categories. Since this report has already analyzed the differences in perception by gender, it could be worthwhile to investigate if the same patterns are reflected when focusing on age as an influencing factor. There is some backing to this from the original journal article by Fillion, Stauch, and Feldman since their original paper is largely concerned around a shift in preference towards inaction socially [@giladpaper] but the study data is not examined in this way. Therefore if there is a shift in preference towards inaction, it is likely that would be reflected in high frequencies of action preferences and perceived competence amongst older study participants. 
+
+## Conclusion
+Overall, we found and examined the correlation between preferences, competence and perceptions of inaction and age and gender reveals the understanding of moral judgement across cognitive science, psychology and philosophy. Like Gawronski et al., suggested and proposed through the CNI model, it shows the duty-based perspective and a tendency not to act since men are approached to make practical and action-oriented decisions, while women are more sensitive to moral norms and prefer inaction. However, the research by Qian et al., and Caprarp & Sieppel presents that gender differences in moral judgements are not large but likey happen due to cultural factors. Based on data from Study 2 of the original paper “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes” by Gilad Feldman, Adrien A. Fillon and Luna Strauch, we focused on understanding the differences in moral judgements between the decision-making approaches of the gender since Feldman et al.,’s research study did not explore the gender differences directly which is the key point for future investigation into how gender can interact with decision-making preferences and perception. Our analysis found no statistically significant differences in the preference and perceived competence between genders which both men and women preferred behavioural agents and perceived them to be more competent even though women had slightly stronger negative perceptions; these findings emphasize the intergender factors including the influence of cultural factors in the decision-making process. It encourages further research in this area with social intersectionality that advances the understanding of human behaviour, moral judgements and decision-making.
+
+\newpage
+
+## References
