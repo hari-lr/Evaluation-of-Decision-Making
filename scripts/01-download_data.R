@@ -19,6 +19,7 @@ study_2_raw_data <-
 # Save Study 2 Raw Data
 write_csv(
   x = study_2_raw_data,
-  file = "01-study_2_raw_data.csv"
+  file = "~/Preference-and-Perception-of-Decision-Making/inputs/data/01-study_2_raw_data.csv"
 )
+
 

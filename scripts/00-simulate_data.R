@@ -8,7 +8,7 @@
 library(tibble)
 library(tidyverse)
 
-#### Simulate Dataset of Preference and Competence by Gender ####
+#### Simulate Data set of Preference and Competence by Gender ####
 
 set.seed(400)
 
