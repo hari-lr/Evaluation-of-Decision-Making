@@ -25,7 +25,7 @@ library(tidyverse)
 library(ggplot2)
 library(knitr)
 
-## read in cleaned data 
+## Read in cleaned data 
 data_gender = read_csv(
   file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/00-cleaned_study_2_data.csv",
   show_col_types = FALSE
