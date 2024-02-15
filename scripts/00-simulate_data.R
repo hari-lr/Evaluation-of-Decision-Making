@@ -1,12 +1,12 @@
 #### Preamble ####
 # Purpose: Data simulation of Preference and Competence perception of action and inaction agents by gender. 
-# Author: Hari Lee Robledo, Sky Suh and Francesca Ye
+# Authors: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 12 February 2024
-# Pre-requisites: none
+# Pre-requisites: None
 
 #### Work Space setup ####
 library(tibble)
-library(ggplot2)
+library(tidyverse)
 
 #### Simulate Dataset of Preference and Competence by Gender ####
 
@@ -32,55 +32,6 @@ simulated_pref_comp_data <-
   )
 )
 simulated_pref_comp_data
-
-
-#### Preference graphs####
-# Male
-data_male <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 1, ]
-
-preference_male <- ggplot(data_male, aes(x = Preference)) +
-  geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Men by Preference",
-       x = "Preference",
-       y = "Participant Count") +
-  theme_minimal()
-preference_male
-
-# Female
-data_female <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 2, ]
-
-preference_female <- ggplot(data_female, aes(x = Preference)) +
-  geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Women by Preference ",
-       x = "Preference",
-       y = "Participant Count") +
-  theme_minimal()
-preference_female
-
-
-#### Competence graphs####
-# Male
-data_male <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 1, ]
-
-competence_male <- ggplot(data_male, aes(x = Competence)) +
-  geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Men by Competence Perception",
-       x = "Competence",
-       y = "Participant Count") +
-  theme_minimal()
-competence_male
-
-# Female
-data_female <- simulated_pref_comp_data[simulated_pref_comp_data$Gender == 2, ]
-
-competence_female <- ggplot(data_female, aes(x = Competence)) +
-  geom_histogram(binwidth = 1, fill = "gray", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Women by Competence Perception",
-       x = "Competence",
-       y = "Participant Count") +
-  theme_minimal()
-competence_female
-
 
 #### Test simulated data ####
 # check that participants equal 460

@@ -1,8 +1,8 @@
 #### Preamble ####
 # Purpose: Download Study 2 Raw Data from https://osf.io/a8e4d/
-# Author: Hari Lee Robledo, Sky Suh and Francesca Ye
+# Authors: Hari Lee Robledo, Sky Suh and Francesca Ye
 # Date: 10 February 2024
-# Pre-requisites: none
+# Pre-requisites: None
 
 #### Work space setup ####
 library(readr)
@@ -19,6 +19,6 @@ study_2_raw_data <-
 # Save Study 2 Raw Data
 write_csv(
   x = study_2_raw_data,
-  file = "study_2_raw_data.csv"
+  file = "01-study_2_raw_data.csv"
 )
 
