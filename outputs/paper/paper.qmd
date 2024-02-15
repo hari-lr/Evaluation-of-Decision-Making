@@ -27,17 +27,17 @@ library(knitr)
 
 ## read in cleaned data 
 data_gender = read_csv(
-  file = "data_gender.csv",
+  file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/00-cleaned_study_2_data.csv",
   show_col_types = FALSE
 )
 
 data_male = read_csv(
-  file = "data_male.csv",
+  file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/01-cleaned_study_2_men_data.csv",
   show_col_types = FALSE
 )
 
 data_female = read_csv(
-  file = "data_female.csv",
+  file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/02-cleaned_study_2_women_data.csv",
   show_col_types = FALSE
 )
 
@@ -78,7 +78,7 @@ head (data_gender, 5) |>
   booktabs = TRUE
   )
 ```
-Data used in this report was taken from the *Center for Open Science*, an open platform that aims to support collaborative research, from a project folder that contains all relevant replication data as uploaded by Fillion, Staunch, and Feldman [@giladpaper]. The specific data set was titled `inactionwetrust_study2.csv` and downloaded directly from the *Center for Open Science*. The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr] package. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], and `dplyr` [@dplyr] packages. To create tables and graphs for data visualization of the datasets, the `ggplot2` [@ggplot2] and `knitr` [@knitr] packages were used.
+Data used in this report was taken from the *Center for Open Science*, an open platform that aims to support collaborative research, from a project folder that contains all relevant replication data as uploaded by Fillion, Staunch, and Feldman [@giladpaper]. The specific data set was titled `inactionwetrust_study2.csv` and downloaded directly from the *Center for Open Science*. The data set was imported into RStudio where the open-source statistical programming language, R [@citeR], was used for cleaning and analysis.  Data was simulated with the functionalities of the `tibble` [@tibble] package. The raw data set was extracted and saved with the functionalities of the `readr` [@readr] package. Data cleaning was aided by the use of the `tidyverse` [@tidyverse], `photobiology` [@photobiology], and `dplyr` [@dplyr] packages. To create tables and graphs for data visualization of the data sets, the `ggplot2` [@ggplot2] and `knitr` [@knitr] packages were used.
 
 To clean the data, the `preference`, `competence`, and `gender` columns from the raw data set for Study 2 were selected and saved as a new data set. After completing this, the `preference` and `competence` columns had their values converted to numeric to ensure all the data would be easily mergeable for graphing and statistical analysis. As well, the cleaned data set was run through the `na.omit()` function so rows with empty values would be skipped. The reason for skipping rows with empty values was done in order to ensure they would not affect the graphical and statistical results. This is because rows with empty values in either the `preference` and `competence` columns would be designated as a 0 value which would have skewed graphical and statistical results since the measurement scale set out in the original journal article uses 0 as a neutral benchmark between inaction and action. As well, the 15 participants that did not disclose their gender or selected others were kept in the cleaned data set but were not used for statistical or graphical analysis. The reason for this decision was to respect the dignity of participants by not placing them within the gender binary in addition to this group’s smaller sample size being less likely to draw meaningful insights. The final cleaned version of the Study 2 data set has these changes reflected in its table version as seen in @tbl-cleaned data . 
 
@@ -92,7 +92,7 @@ Bar graphs were created using `ggplot2` [@ggplot2] to visualize the cleaned data
 #| message: false
 #| echo: false
 #| label: fig-preferencemale
-#| fig-cap: Distribution of Male Participants by Preference
+#| fig-cap: Frequency of Decision-Making Approach Preference Responses Across Men
 
 histogram_male <- ggplot(data_male, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
@@ -109,7 +109,7 @@ histogram_male
 #| message: false
 #| echo: false
 #| label: fig-preferencefemale
-#| fig-cap: Distribution of Female Participants by Preference
+#| fig-cap: Frequency of Decision-Making Approach Preference Responses Across Women
 
 histogram_female <- ggplot(data_female, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
@@ -126,7 +126,7 @@ histogram_female
 #| message: false
 #| echo: false
 #| label: fig-preferenceboth
-#| fig-cap: Comparison of Gender Distribution by Preference
+#| fig-cap: Comparison of Decision-Making Approach Preference Response Frequencies by Gender
 
 # Preference Comparison Graph 
 histogram_comparison_preference <- ggplot(data_gender, aes(x = preference)) +
@@ -154,7 +154,7 @@ For both men and women, the median and mode for preference is 0 which indicates 
 #| message: false
 #| echo: false
 #| label: fig-competencemale
-#| fig-cap: Distribution of Male Participants by Competence Perception
+#| fig-cap: Frequency of Competence Perception Responses Across Men
 
 # Competence Graph by Gender 1 (Male)
 histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
@@ -172,7 +172,7 @@ histogram_male_competence
 #| message: false
 #| echo: false
 #| label: fig-competencefemale
-#| fig-cap: Distribution of Female Participants by Competence Perception
+#| fig-cap: Frequency of Competence Perception Responses Across Women
 
 # Competence Graph by Gender 2 (Female)
 histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
@@ -190,7 +190,7 @@ histogram_female_competence
 #| message: false
 #| echo: false
 #| label: fig-competenceboth
-#| fig-cap: Comparison of Gender Distribution by Competence
+#| fig-cap: Comparison of Percieved Competence Participant Response Frequencies by Gender
 
 # Competence Comparison Graph 
 histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
