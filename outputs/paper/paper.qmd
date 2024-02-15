@@ -18,7 +18,7 @@ format: pdf
 #| message: false
 #| echo: false
 #| warning: false
-#### Workspace set-up ####
+#### Work space set-up ####
 
 ## Load packages
 library(tidyverse)
