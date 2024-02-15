@@ -18,15 +18,17 @@ invisible(lapply(list.of.packages, library, character.only = TRUE))
 options(scipen=999, digits =3)
 
 #### Read Data ####
-data2 <- read.csv(~/Preference-and-Perception-of-Decision-Making/inputs/data/01-study_2_raw_data.csv)
+data2 <- read.csv("~/Preference-and-Perception-of-Decision-Making/inputs/data/01-study_2_raw_data.csv")
 
 
 #### Clean Data ####
 # Code referenced from: https://osf.io/kzf3x
 ## remove variable descriptions + practice data
 
-data2 <-  data2 [, c("expect", "preference", "competence", "descriptive.norms", "Injunctive", "regret", "joy", "check", "gender", "age", "condition")]
-data2 <- mutate_all(data2, function(x) as.numeric(as.character(x)))
+data2 <-  
+  data2 [, c("expect", "preference", "competence", "descriptive.norms", "Injunctive", "regret", "joy", "check", "gender", "age", "condition", sep = ";")]
+data2 <- 
+  mutate_all(data2, function(x) as.numeric(as.character(x)))
 
 
 S2Control <- data2 %>% filter (condition == 1)
@@ -49,7 +51,7 @@ dplot2$key<-factor(dplot2$key, levels = c("Preference","Competence",
                                           "Regret", "Joy"))
 
 
-#BAR GRAPHS
+# Bar Graphs
 
 S2preferenceplot <- ggstatsplot::gghistostats(
   data = S2Control, # data from which variable is to be taken
@@ -108,7 +110,7 @@ S2joyplot <- ggstatsplot::gghistostats(
 ) + theme_minimal()
 S2joyplot
 
-#Merged Graphs
+# Merged Graphs
 
 dplot2 %>% ggplot(aes(value)) + 
   facet_wrap(~ key, scales = "free")+ geom_bar(binwidth = 1)+theme_apa()+
