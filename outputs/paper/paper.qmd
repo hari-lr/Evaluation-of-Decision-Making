@@ -3,7 +3,7 @@ title: "Is There a Correlation Between Preference and Perceptions of Inaction an
 author: 
 - Francesca Ye 
 - Sky Suh 
-- Hari Lee Robledo"
+- Hari Lee Robledo
 date: "today"
 date-format: long
 abstract: "This paper investigates the correlation between preference and perceptions of inaction versus action in decision-making and gender to replicate on the previous studies about the findings regarding gender disparities in moral judgment preference. Building on interdisciplinary research in cognitive science, psychology, and philosophy, the study explores and examines the preference and perceived competence of different decision-making agents by gender. This report uses the  Study 2 data set from the article “Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes” for creating graphs and conducting statistical analysis. Since this research topic can be significant for further research, we place more weight on the discussion and further research section to inform and address the interplay of social factors."
