@@ -1,5 +1,5 @@
 ---
-title: "Is There a Correlation Between Preference and Perceptions of Inaction and Action in Decision-Making and Gender? An Analysis of Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes Study 2."
+title: "An Analysis of Preference and Percieved Competence of Actions and Inaction Agents in Risky Decisions Resulting in Negative Outcomes by Gender: Men and Women Both Prefer and Percieve Inaction as More Competent"
 author: 
 - Francesca Ye 
 - Sky Suh 
@@ -21,6 +21,7 @@ format: pdf
 #### Work space set-up ####
 
 ## Load packages
+library(tinytex)
 library(tidyverse)
 library(ggplot2)
 library(knitr)
@@ -97,7 +98,7 @@ Bar graphs were created using `ggplot2` [@ggplot2] to visualize the cleaned data
 histogram_male <- ggplot(data_male, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
   scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Males by Preference",
+  labs(title = "Frequency of Preference Responses (Men)",
        x = "Preference",
        y = "Frequency") +
   theme_minimal()
@@ -109,12 +110,12 @@ histogram_male
 #| message: false
 #| echo: false
 #| label: fig-preferencefemale
-#| fig-cap: Frequency of Decision-Making Approach Preference Responses Across Women
+#| fig-cap: Frequency of Decision-Making Approach Preference Responses (Women)
 
 histogram_female <- ggplot(data_female, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
   scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Females by Preference",
+  labs(title = "Frequency of Preference Responses (Women)",
        x = "Preference",
        y = "Frequency") +
   theme_minimal()
@@ -126,12 +127,12 @@ histogram_female
 #| message: false
 #| echo: false
 #| label: fig-preferenceboth
-#| fig-cap: Comparison of Decision-Making Approach Preference Response Frequencies by Gender
+#| fig-cap: Comparison of Decision-Making Approach Preference Response Frequencies by Gender, Men = 1 and Women = 2
 
 # Preference Comparison Graph 
 histogram_comparison_preference <- ggplot(data_gender, aes(x = preference)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Comparison of Preference Distribution by Gender",
+  labs(title = "Comparison of Preference Response Frequencies by Gender",
        x = "Preference",
        y = "Frequency") +
   theme_minimal() +
@@ -159,7 +160,7 @@ For both men and women, the median and mode for preference is 0 which indicates 
 # Competence Graph by Gender 1 (Male)
 histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Males by Competence ",
+  labs(title = "Frequency of Competence Responses (Men)",
        x = "Competence",
        y = "Frequency") +
   scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
@@ -177,7 +178,7 @@ histogram_male_competence
 # Competence Graph by Gender 2 (Female)
 histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Females by Competence",
+  labs(title = "Frequency of Competence Responses (Women)",
        x = "Competence",
        y = "Frequency") +
   scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
@@ -190,12 +191,12 @@ histogram_female_competence
 #| message: false
 #| echo: false
 #| label: fig-competenceboth
-#| fig-cap: Comparison of Percieved Competence Participant Response Frequencies by Gender
+#| fig-cap: Comparison of Percieved Competence Participant Response Frequencies by Gender, Men = 1 and Women = 2
 
 # Competence Comparison Graph 
 histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
   geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Comparison of Competence Distribution by Gender",
+  labs(title = "Comparison of Competence Response Frequencies by Gender",
        x = "Preference",
        y = "Frequency") +
   theme_minimal() +
