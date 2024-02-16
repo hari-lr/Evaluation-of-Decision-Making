@@ -8,7 +8,7 @@ author:
 date: "today"
 date-format: long
 abstract: "This report investigates differences between gender and perceptions of action versus inaction agents from research conducted by Adrien et al. Focusing on preference and perceived competence this report graphed the frequencies of responses by gender in addition to statistical analysis. This report found there are no significant differences in preference and perceived competence by gender as both slightly leaned towards inaction for both estimands. Considering the larger field of moral judgment, this report indicates that gender does not seem to be a  strong influence on decision-making approaches as previously thought."
-thanks: "Code and data from this analysis are available at: https://github.com/hari-lr/Preference-and-Perception-of-Decision-Making"
+thanks: "Code and data from this analysis are available at: https://github.com/hari-lr/Preference-and-Perception-of-Decision-Making". Replication on Social Science Reproduction platform available at: https://doi.org/10.1525/collabra.74817
 toc: true
 number-sections: true
 bibliography: references.bib
