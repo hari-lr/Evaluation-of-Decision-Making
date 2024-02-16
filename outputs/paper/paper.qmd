@@ -87,39 +87,6 @@ To clean the data, the `preference`, `competence`, and `gender` columns from the
 Bar graphs were created using `ggplot2` [@ggplot2] to visualize the cleaned data set to view preference and perceived competence of different types of decision-making approaches. A bar graph was created for each gender, men and women, to view the frequency of responses on the prescribed scale of measurement from -5 to 5 for preference. Another pair of bar graphs were also created for each gender to view the frequency of responses along the scale of measurement from -5 to 5 for perceived competence of different decision-making approaches. While this scale served as the x-axis of the bar graphs, the y-axes values ranged between 0 to 180 with incremental increases by 20 in order to capture all data values.
 
 ### Preference of Action versus Inaction Agents by Gender
-```{r}
-#| warning: false
-#| message: false
-#| echo: false
-#| label: fig-preferencemale
-#| fig-cap: Frequency of Decision-Making Approach Preference Responses Across Men
-
-histogram_male <- ggplot(data_male, aes(x = preference)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Frequency of Preference Responses (Men)",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal()
-histogram_male
-```
-
-```{r}
-#| warning: false
-#| message: false
-#| echo: false
-#| label: fig-preferencefemale
-#| fig-cap: Frequency of Decision-Making Approach Preference Responses (Women)
-
-histogram_female <- ggplot(data_female, aes(x = preference)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Frequency of Preference Responses (Women)",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal()
-histogram_female
-```
 
 ```{r}
 #| warning: false
@@ -141,7 +108,7 @@ histogram_comparison_preference
 ```
 
 
-As seen when viewing @fig-preferencemale, 0 appears to be the most popular response from men which would indicate that a plurality of  study participants did not have a preference between action and inaction agents. However, the bar graph also shows that responses do seem to skew more towards the left or negative numeric value side which could imply that there is a general trend of men preferring inaction rather than action. Similarly, for women 0 appears to be the most popular response from graphical interpretation as seen in @fig-preferencefemale. While it does appear that more women gave a positive numeric value, therefore indicating preference for action, the overall graph does seem to also skew more to the left side. Since there were just over two times the amount of women study participants, it is possible the graph seems to reflect more preference towards action due to an increased amount of data points.
+As seen when viewing @fig-preferencboth, 0 appears to be the most popular response from men which would indicate that a plurality of  study participants did not have a preference between action and inaction agents. However, the bar graph also shows that responses do seem to skew more towards the left or negative numeric value side which could imply that there is a general trend of men preferring inaction rather than action. Similarly, for women 0 appears to be the most popular response from graphical interpretation as seen in @fig-preferenceboth. While it does appear that more women gave a positive numeric value, therefore indicating preference for action, the overall graph does seem to also skew more to the left side. Since there were just over two times the amount of women study participants, it is possible the graph seems to reflect more preference towards action due to an increased amount of data points.
 
 For both men and women, the median and mode for preference is 0 which indicates that a majority of study participants did not have any preference for decision-making approaches. For men, the average preference response was -0.64284 and -0.68056 for women. This means that on average, men and women in this study both slightly preferred inaction over action with women trending minimally more towards inaction preference. Additionally, the standard deviation for men was 2.331804 and 2.06757 for women which can be considered a wide variation since the scale of possible values is relatively small. Combined with knowledge of the middling averages for both genders, it can be concluded that both graphs somewhat mirror a normal distribution since there is a clear mean at 0 which is also where data points are most frequently plotted. 
 
@@ -149,41 +116,6 @@ For both men and women, the median and mode for preference is 0 which indicates 
 
 
 ### Perceived Competence of Action and Inaction Agents by Gender
-```{r}
-#| warning: false
-#| message: false
-#| echo: false
-#| label: fig-competencemale
-#| fig-cap: Frequency of Competence Perception Responses Across Men
-
-# Competence Graph by Gender 1 (Male)
-histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Frequency of Competence Responses (Men)",
-       x = "Competence",
-       y = "Frequency") +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  theme_minimal()
-histogram_male_competence
-```
-
-```{r}
-#| warning: false
-#| message: false
-#| echo: false
-#| label: fig-competencefemale
-#| fig-cap: Frequency of Competence Perception Responses Across Women
-
-# Competence Graph by Gender 2 (Female)
-histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Frequency of Competence Responses (Women)",
-       x = "Competence",
-       y = "Frequency") +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  theme_minimal()
-histogram_female_competence
-```
 
 ```{r}
 #| warning: false
@@ -204,7 +136,7 @@ histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
 histogram_comparison_competence
 ```
 
-@fig-competencemale visually reveals that 0 also appears to be the most popular response which indicates that a plurality of men that participated in the study did not perceive action or inaction agents as more competent. The bar graph does highlight that there are more responses of a negative numerical value in comparison to responses of a positive numerical value with 0 as the middle value. This trend towards the left side could indicate that inaction agents are generally perceived as more competent by men. @fig-competencefemale emphasizes a similar pattern with 0 being the value with a plurality of all responses as seen during graphical interpretation. Interestingly, the graph visualizing the responses of perceived competence by women reveals a stronger trend towards negative numerical values in contrast to the responses with a positive numerical value. Since there were over two times the amount of women participating than men in the study, the increased sample size could have amplified trends in data when graphed. However, both graphs reveal there is a noticeable trend toward inaction agents being perceived as more competent by both genders. 
+@fig-competenceboth visually reveals that 0 also appears to be the most popular response which indicates that a plurality of men that participated in the study did not perceive action or inaction agents as more competent. The bar graph does highlight that there are more responses of a negative numerical value in comparison to responses of a positive numerical value with 0 as the middle value. This trend towards the left side could indicate that inaction agents are generally perceived as more competent by men. @fig-competenceboth emphasizes a similar pattern with 0 being the value with a plurality of all responses as seen during graphical interpretation. Interestingly, the graph visualizing the responses of perceived competence by women reveals a stronger trend towards negative numerical values in contrast to the responses with a positive numerical value. Since there were over two times the amount of women participating than men in the study, the increased sample size could have amplified trends in data when graphed. However, both graphs reveal there is a noticeable trend toward inaction agents being perceived as more competent by both genders. 
 
 For both men and women, the median and mode for preference is 0 which indicates that a majority of study participants did not have any preference for decision-making approaches. For men, the average preference response was -0.6715 and -0.4792 for women. This means that on average, men and women in this study both slightly perceived inaction as more competent over action with men trending minimally more towards perceiving inaction to be more competent. Additionally, the standard deviation for men was 1.9930375 and 1.6170 for women which can be considered a wide variation since the scale of possible values is relatively small. Considering the middling averages for both genders, it can be concluded that both graphs somewhat mirror a normal distribution since there is a clear mean at 0 which is also where data points are most frequently plotted.
 
