@@ -11,7 +11,6 @@
 
 ```{r setup, include=FALSE}
 
-
 #### Workspace setup ####
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 
@@ -23,7 +22,6 @@ invisible(lapply(list.of.packages, library, character.only = TRUE))
 
 # setting formatting options
 options(scipen=999, digits =3)
-
 
 ```
 
@@ -85,7 +83,6 @@ Sa1competenceplot <- ggstatsplot::gghistostats(
 )
 Sa1competenceplot
 
-
 Sa1normativeplot <- ggstatsplot::gghistostats(
   data = data1, # data from which variable is to be taken
   x = normative, # numeric variable
@@ -96,7 +93,6 @@ Sa1normativeplot <- ggstatsplot::gghistostats(
   #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 Sa1normativeplot
-
 
 Sa1regretplot <- ggstatsplot::gghistostats(
   data = data1, # data from which variable is to be taken
@@ -109,7 +105,6 @@ Sa1regretplot <- ggstatsplot::gghistostats(
 
 )
 Sa1regretplot
-
 
 # two in one
 library(ggpubr)
@@ -166,7 +161,6 @@ S1bpreferenceplot <- ggstatsplot::gghistostats(
 )
 S1bpreferenceplot
 
-
 S1bcompetenceplot <- ggstatsplot::gghistostats(
   data = data1b, # data from which variable is to be taken
   x = competence, # numeric variable
@@ -177,8 +171,6 @@ S1bcompetenceplot <- ggstatsplot::gghistostats(
   #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 S1bcompetenceplot
-
-
 
 S1bnormativeplot <- ggstatsplot::gghistostats(
   data = data1b, # data from which variable is to be taken
@@ -191,8 +183,6 @@ S1bnormativeplot <- ggstatsplot::gghistostats(
 )
 S1bnormativeplot
 
-
-
 S1bregretplot <- ggstatsplot::gghistostats(
   data = data1b, # data from which variable is to be taken
   x = regret, # numeric variable
@@ -204,11 +194,9 @@ S1bregretplot <- ggstatsplot::gghistostats(
 )
 S1bregretplot
 
-
 # two in one
 library(ggpubr)
 ggarrange(S1bpreferenceplot, S1bcompetenceplot, S1bnormativeplot, S1bregretplot, common.legend = TRUE)
-
 
 ```
 
@@ -222,7 +210,6 @@ data2 <- read.csv("inactionwetrust_study2.csv",sep = ";" )
 ## remove variable descriptions + practice data
 data2 <-  data2 [, c("expect", "preference", "competence", "descriptive.norms", "Injunctive", "regret", "joy", "check", "gender", "age", "condition")]
 data2 <- mutate_all(data2, function(x) as.numeric(as.character(x)))
-
 
 ```
 
@@ -264,7 +251,6 @@ S2preferenceplot <- ggstatsplot::gghistostats(
 )
 S2preferenceplot
 
-
 S2competenceplot <- ggstatsplot::gghistostats(
   data = S2Control, # data from which variable is to be taken
   x = competence, # numeric variable
@@ -275,7 +261,6 @@ S2competenceplot <- ggstatsplot::gghistostats(
   #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 S2competenceplot
-
 
 S2desnormativeplot <- ggstatsplot::gghistostats(
   data = S2Control, # data from which variable is to be taken
@@ -320,7 +305,6 @@ S2joyplot <- ggstatsplot::gghistostats(
   #caption = "Data courtesy of: SAPA project (https://sapa-project.org)"
 )
 S2joyplot
-
 
 # six in one
 library(ggpubr)
