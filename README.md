@@ -2,6 +2,7 @@
 
 
 ## Overview
+This paper investigates the correlation between decision-making preferences (inaction vs. action) and gender, aiming to replicate and expand on prior research on gender disparities in moral judgment.  The research explores decision-making preferences and perceived competence across genders, utilizing the Study 2 dataset from "Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes" by Gilad Feldman et al., (2023). 
 
 ## File Structure
 The repo is structured as:

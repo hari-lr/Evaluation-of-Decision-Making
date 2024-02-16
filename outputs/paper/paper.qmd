@@ -1,5 +1,6 @@
 ---
-title: "An Analysis of Preference and Percieved Competence of Actions and Inaction Agents in Risky Decisions Resulting in Negative Outcomes by Gender: Men and Women Both Prefer and Percieve Inaction as More Competent"
+title: "Men and Women Both Prefer and Perceive Inaction as More Competent"
+subtitle: An Analysis of Preference and Perceived Competence of Actions and Inaction Agents in Risky Decisions Resulting in Negative Outcomes by Gender
 author: 
 - Francesca Ye 
 - Sky Suh 
