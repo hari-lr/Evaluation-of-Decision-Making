@@ -42,18 +42,6 @@ write_csv(
   file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/01-cleaned_study_2_men_data.csv"
 )
 
-# Preference Graph by Gender 1 (Male)
-
-histogram_male <- ggplot(data_male, aes(x = preference)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Males by Preference",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal()
-
-histogram_male
-
 # Create data set for just Gender 2 (women)
 data_female <- data_gender[data_gender$gender == 2, ]
 
@@ -62,72 +50,3 @@ write_csv(
   x = data_female,
   file = "~/Preference-and-Perception-of-Decision-Making/outputs/data/02-cleaned_study_2_women_data.csv"
 )
-
-# Create a histogram for the "preference" column with gender equal to 2
-histogram_female <- ggplot(data_female, aes(x = preference)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  scale_y_continuous(limits = c(0,140), breaks = seq(0, 140, by = 10)) +
-  labs(title = "Distribution of Females by Preference",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal()
-
-histogram_female
-
-
-#Compare Preference by Gender
-#Code referenced from: https://chat.openai.com/
-histogram_comparison_preference <- ggplot(data_gender, aes(x = preference)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Comparison of Preference Distribution by Gender",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal() +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  facet_wrap(~gender, scales = "free")
-
-
-histogram_comparison_preference
-
-## Competence Graphs by Gender
-
-# Select Gender 1 (male) and Competence
-data_male <- data_gender[data_gender$gender == 1, ]
-
-histogram_male_competence <- ggplot(data_male, aes(x = competence)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Males by Competence ",
-       x = "Competence",
-       y = "Frequency") +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  theme_minimal()
-
-histogram_male_competence
-
-
-# Select Gender 2 (female) and Competence
-data_female <- data_gender[data_gender$gender == 2, ]
-
-histogram_female_competence <- ggplot(data_female, aes(x = competence)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Distribution of Females by Competence",
-       x = "Competence",
-       y = "Frequency") +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  theme_minimal()
-
-histogram_female_competence
-
-
-#Compare Competence by Gender
-#Code referenced from: https://chat.openai.com/
-histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
-  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.7) +
-  labs(title = "Comparison of Competence Distribution by Gender",
-       x = "Preference",
-       y = "Frequency") +
-  theme_minimal() +
-  scale_y_continuous(limits = c(0, 180), breaks = seq(0, 180, by = 20)) +
-  facet_wrap(~gender, scales = "free")
-
-histogram_comparison_competence
