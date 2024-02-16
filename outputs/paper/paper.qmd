@@ -1,13 +1,13 @@
 ---
-title: "Men and Women Both Prefer and Perceive Inaction as More Competent: An Analysis of Preference and Perceived Competence of Actions and Inaction Agents in Risky Decisions Resulting in Negative Outcomes by Gender" 
-subtitle: "A Further Investigation of Study 2 Data from “Evaluations of Action and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes: Inaction Agents Are Preferred to and Perceived as More Competent and Normative Than Action Agents” by Adrien et al."
+title: "Men and Women Both Prefer and Perceive Inaction as More Competent" 
+subtitle: "An Analysis of Preference and Perceived Competence of Actions and Inaction Agents in Risky Decisions Resulting in Negative Outcomes by Gender"
 author: 
 - Francesca Ye 
 - Sky Suh 
 - Hari Lee Robledo
 date: "today"
 date-format: long
-abstract: "This report investigates differences between gender and perceptions of action versus inaction agents from research conducted by Adrien et al. that broadly examined the perceptions of decision-making approaches. Focusing on preference and perceived competence this report graphed the frequencies of responses by gender in addition to statistical significance analysis from Fillion et al.’s  “Evaluations of Actions and Inaction Decision-makers in Risky Decisions Resulting in Negative Outcomes” Study 2 data. This report found there are no significant differences in preference and perceived competence by gender as both slightly leaned towards inaction for both estimands. Considering the larger field of moral judgment, this report indicates that gender does not seem to be a  strong influence on decision-making approaches as previously thought."
+abstract: "This report investigates differences between gender and perceptions of action versus inaction agents from research conducted by Adrien et al. Focusing on preference and perceived competence this report graphed the frequencies of responses by gender in addition to statistical analysis. This report found there are no significant differences in preference and perceived competence by gender as both slightly leaned towards inaction for both estimands. Considering the larger field of moral judgment, this report indicates that gender does not seem to be a  strong influence on decision-making approaches as previously thought."
 thanks: "Code and data from this analysis are available at: https://github.com/hari-lr/Preference-and-Perception-of-Decision-Making"
 toc: true
 number-sections: true
@@ -206,14 +206,9 @@ histogram_comparison_competence <- ggplot(data_gender, aes(x = competence)) +
 histogram_comparison_competence
 ```
 
-
-
 @fig-competencemale visually reveals that 0 also appears to be the most popular response which indicates that a plurality of men that participated in the study did not perceive action or inaction agents as more competent. The bar graph does highlight that there are more responses of a negative numerical value in comparison to responses of a positive numerical value with 0 as the middle value. This trend towards the left side could indicate that inaction agents are generally perceived as more competent by men. @fig-competencefemale emphasizes a similar pattern with 0 being the value with a plurality of all responses as seen during graphical interpretation. Interestingly, the graph visualizing the responses of perceived competence by women reveals a stronger trend towards negative numerical values in contrast to the responses with a positive numerical value. Since there were over two times the amount of women participating than men in the study, the increased sample size could have amplified trends in data when graphed. However, both graphs reveal there is a noticeable trend toward inaction agents being perceived as more competent by both genders. 
 
 For both men and women, the median and mode for preference is 0 which indicates that a majority of study participants did not have any preference for decision-making approaches. For men, the average preference response was -0.6715 and -0.4792 for women. This means that on average, men and women in this study both slightly perceived inaction as more competent over action with men trending minimally more towards perceiving inaction to be more competent. Additionally, the standard deviation for men was 1.9930375 and 1.6170 for women which can be considered a wide variation since the scale of possible values is relatively small. Considering the middling averages for both genders, it can be concluded that both graphs somewhat mirror a normal distribution since there is a clear mean at 0 which is also where data points are most frequently plotted.
-
-@fig-competenceboth highlights the differences between the responses of men and women but statistical analysis can aid in assessing whether or not there is a difference in decision-making approaches between genders. To assess if the observed data is statistically significant, the p-values for each data set by gender was calculated. The null hypothesis was “there is no significant correlation between gender and perceived competence of  decision-making approaches.” The p-value for men was 0.0.092174 and 0.475775 for women. Since each p-value is above  α = 0.05, there is no statistical significance between preference and gender, therefore the null hypothesis is accepted.
-
 
 ## Discussion
 ### Report Findings
