@@ -9,7 +9,7 @@ The repo is structured as:
 
 - `inputs` contains the data sources used in analysis including the raw data and the LLM receipts. 
 - `outputs` contains the cleaned dataset that was constructed.
-- `outputs` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. It also includes the replication code of the original paper.
+- `outputs` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper. It also includes the replication code of the original paper and summary statistics files.
 - `scripts` contains the R scripts used to simulate, download and clean data.
 
 ## How to Run
